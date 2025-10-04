@@ -9,7 +9,7 @@ public class Main {
             try {
                 double celsiumInput = askForCelsiumValue();
                 System.out.printf("%.2f градусов цельсия это %.2f фаренгейт",
-                        askForCelsiumValue(), convertCelsiumToFahrenheit(celsiumInput));
+                        celsiumInput, convertCelsiumToFahrenheit(celsiumInput));
                 break;
             } catch (IOException e) {
                 System.out.println("Не удалось обработать ввод. Введи еще раз");
