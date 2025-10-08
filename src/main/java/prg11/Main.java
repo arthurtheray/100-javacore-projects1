@@ -15,7 +15,7 @@ public class Main {
     private static int reverseNumber(int number) {
         int reversedNumber = 0;
         for (int i = getNumberDigitsCount(number) - 1; i >= 0; i--) {
-            reversedNumber = (int) ((number % 10) * Math.pow(10, (double) i)) + reversedNumber;
+            reversedNumber = (int) ((number % 10) * Math.pow(10, i)) + reversedNumber;
             number = number / 10;
         }
         return Math.abs(reversedNumber);
