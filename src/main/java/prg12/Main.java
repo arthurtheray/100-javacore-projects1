@@ -30,7 +30,7 @@ public class Main {
         Iterator<Integer> iterator = foundedPrimeNumbers.iterator();
         int index = 1;
         while (iterator.hasNext()) {
-            System.out.printf("%s", index % 10 != 0 ? iterator.next() + " " : iterator.next() + "\n");
+            System.out.printf("%s", index % 10 != 0 ? iterator.next() + "\t" : iterator.next() + "\n");
             index++;
         }
     }
