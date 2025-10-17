@@ -1,5 +1,6 @@
 package prg17;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,21 +11,22 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int[] arr = {-1, 23, 33, 1, 0, 12312323, 23, 3232, Integer.MAX_VALUE};
-//        moveArr(arr, askForK());
-        System.out.println(4%2);
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        moveArr(arr, askForK());
+        System.out.println(Arrays.toString(arr));
     }
 
-    private static int[] moveArr(int[] arr, int k) {
-
-        int newK = arr.length % k - 1;
-        int buffer;
-        for (int i = 0; i < arr.length; i++) {
-            buffer = arr[i];
-            arr[i] = arr[i + k];
-
+    private static void moveArr(int[] arr, int k) {
+        if (arr == null) {
+            throw new IllegalArgumentException("Массив не должен быть null");
         }
-        return arr;
+        if (k == 0) {
+            return;
+        }
+        int normalizedK = k % arr.length;
+        reverseArr(arr, 0, arr.length - 1);
+        reverseArr(arr, 0, normalizedK - 1);
+        reverseArr(arr, normalizedK, arr.length - 1);
     }
 
     public static int askForK() {
@@ -41,5 +43,23 @@ public class Main {
             }
         }
         return userInput;
+    }
+
+    public static void reverseArr(int[] arr, int start, int end) {
+        if (arr.length == 1 || start == end) {
+            return;
+        }
+        if (start > end) {
+            throw new IllegalArgumentException("Индекс начала разворачиваемого массива должен быть меньше индекса конца");
+        }
+
+        int buffer;
+        while (start < end) {
+            buffer = arr[start];
+            arr[start] = arr[end];
+            arr[end] = buffer;
+            start++;
+            end--;
+        }
     }
 }
