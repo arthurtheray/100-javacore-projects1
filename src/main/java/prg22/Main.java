@@ -7,10 +7,11 @@ package prg22;
  */
 public class Main {
     public static void main(String[] args) {
-        Rectangle rectangle = new Rectangle(5, 5, 10, 10);
+        Rectangle rectangle = new Rectangle(5, 5, -6, 10);
         System.out.println("perimeter: " + rectangle.getPerimeter());
         System.out.println("Square: " + rectangle.getSquare());
         System.out.println("rectangle contains point (15, 15): " + rectangle.containsPoint(15, 15));
         System.out.println("rectangle contains point (15, 150): " + rectangle.containsPoint(15, 150));
+        System.out.println("rectangle contains point (0, 6): " + rectangle.containsPoint(0, 6));
     }
 }

@@ -11,6 +11,9 @@ public class Rectangle {
     private final int lenY;
 
     public Rectangle(int pivotX, int pivotY, int lenX, int lenY) {
+        if (lenX == 0 || lenY == 0) {
+            throw new IllegalArgumentException("длина и ширина не должны быть нулевыми");
+        }
         this.pivotX = pivotX;
         this.pivotY = pivotY;
         this.lenX = lenX;
@@ -22,14 +25,32 @@ public class Rectangle {
     }
 
     public int getSquare() {
-        return this.lenX * this.lenY;
+        return abs(this.lenX * this.lenY);
     }
 
     public int getPerimeter() {
-        return (lenX + lenY) * 2;
+        return (abs(lenX) + abs(lenY)) * 2;
     }
 
     public boolean containsPoint(int x, int y) {
-        return (x >=  pivotX) && (x <= pivotX + lenX) && (y >= pivotY) && (y <= pivotY + lenY);
+        return isBetween(x, this.pivotX, this.pivotX + lenX)
+                && isBetween(y, this.pivotY, this.pivotY + lenY);
+    }
+
+    private int abs(int value) {
+        return value >= 0 ? value : value * -1;
+    }
+
+    private boolean isBetween(int value, int firstLimit, int secondLimit) {
+        int min;
+        int max;
+        if (firstLimit <= secondLimit) {
+            min = firstLimit;
+            max = secondLimit;
+        } else {
+            min = secondLimit;
+            max = firstLimit;
+        }
+        return value >= min && value <= max;
     }
 }
