@@ -1,10 +1,7 @@
 package testings;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,6 +25,12 @@ public class Main {
         char[] chars = {'a', 'b', 'c'};
         System.out.println(String.valueOf(chars));
         System.out.println(8 % 7);
+        Comparator<Integer> comparator = new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return 0;
+            }
+        };
     }
 
 
