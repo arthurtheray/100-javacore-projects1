@@ -14,6 +14,15 @@ public class Main {
         list.add("мыла");
         list.add("раму");
         list.add("Моя", 0);
+
         System.out.println(list);
+
+        System.out.println(list.getFirst());
+        System.out.println(list.getLast());
+
+        System.out.println("testing iterator:");
+        for (String str:list) {
+            System.out.println(str);
+        }
     }
 }

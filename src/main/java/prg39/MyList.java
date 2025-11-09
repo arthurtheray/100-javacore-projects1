@@ -1,10 +1,8 @@
 package prg39;
 
-import java.util.NoSuchElementException;
-
 /**
  * Моя реализация упрощенного аналога List из JDK
- * @param <T> объект для добавления
+ * @param <T> тип объектов для добавления в список
  */
 public interface MyList<T> {
     /**
@@ -18,7 +16,7 @@ public interface MyList<T> {
      * сдвигаются вправо
      * @param element  добавляемый элемент
      * @param index индекс в который встанет элемент. Нумерация начинается с 0
-     * @throws IndexOutOfBoundsException если запрашиваемый индекс меньше 0 или больше (size - 1)
+     * @throws IndexOutOfBoundsException если запрашиваемый индекс меньше 0 или больше size
      */
     void add(T element, int index) throws IndexOutOfBoundsException;
 
@@ -26,7 +24,7 @@ public interface MyList<T> {
      * Получить объект по запрашиваемому индексу
      * @param index необходимый индекс
      * @return элемент по указанному индексу
-     * @throws IndexOutOfBoundsException если индекс если запрашиваемый индекс меньше 0 или больше (size - 1)
+     * @throws IndexOutOfBoundsException если индекс если запрашиваемый индекс меньше 0 или больше size
      */
     T get(int index) throws IndexOutOfBoundsException;
 
