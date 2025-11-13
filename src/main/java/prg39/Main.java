@@ -1,11 +1,10 @@
 package prg39;
 
-import java.util.List;
-
 /**
  * Вложенные/внутренние классы. Свой `LinkedList`.
  *    1. Требования: внутренний `Node`; без коллекций JDK.
  *    2. Теория: nested/inner classes, доступ к полям внешнего класса.
+ *   Обновлено 13.11.2025: Внес правки по результат code-review
  */
 public class Main {
     public static void main(String[] args) {
@@ -14,8 +13,9 @@ public class Main {
         list.add("мыла");
         list.add("раму");
         list.add("Моя", 0);
+        list.add("грязную", 3);
 
-        System.out.println(list);
+        System.out.println("итоговый лист:" + list);
 
         System.out.println(list.getFirst());
         System.out.println(list.getLast());

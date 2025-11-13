@@ -2,7 +2,7 @@ package prg39;
 
 import java.util.*;
 
-public class MyLinkedList<T> implements Iterable<T>, MyList<T> {
+public class MyLinkedList<T> implements MyList<T> {
     private int size = 0;
     private Node firstElem;
     private Node lastElem;
@@ -14,20 +14,20 @@ public class MyLinkedList<T> implements Iterable<T>, MyList<T> {
     public Iterator<T> iterator() {
         return new Iterator<>() {
             Node next = firstElem;
-            int count = 0;
 
             @Override
             public boolean hasNext() {
-                return  (count < size);
+                return  (next != null);
             }
 
             @Override
             public T next() {
-                if (size == 0 || next == null)
+                if (size == 0 || next == null) {
                     throw new NoSuchElementException("No more elements");
+                }
+
                 T thisElem = next.obj;
                 next = next.nextNode;
-                count++;
                 return thisElem;
             }
         };
@@ -35,27 +35,20 @@ public class MyLinkedList<T> implements Iterable<T>, MyList<T> {
 
     @Override
     public void add(T element) {
-        Node oldLast = lastElem;
-        Node newNode = new Node(oldLast, element, null);
-        lastElem = newNode;
-        if (oldLast == null) {
-            firstElem = newNode;
-        } else {
-            oldLast.nextNode = newNode;
+        lastElem = new Node(lastElem, element, null);
+        if (size++ == 0) {
+            firstElem = lastElem;
         }
-        size++;
     }
 
     @Override
-    public void add(T element, int index) throws IndexOutOfBoundsException {
+    public void add(T element, int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
 
         if (index == 0) {
-            Node newNode = new Node(null, element, firstElem);
-            firstElem.prevNode = newNode;
-            firstElem = newNode;
+            firstElem = new Node(null, element, firstElem);
             size++;
             return;
         }
@@ -69,12 +62,7 @@ public class MyLinkedList<T> implements Iterable<T>, MyList<T> {
             byIndex = byIndex.nextNode;
         }
 
-        Node newNode = new Node(byIndex.prevNode, element, byIndex);
-        if (byIndex.prevNode != null) {
-            byIndex.prevNode.nextNode = newNode;
-        }
-
-        byIndex.prevNode = newNode;
+        byIndex = new Node(byIndex.prevNode, element, byIndex);
         size++;
     }
 
@@ -94,13 +82,18 @@ public class MyLinkedList<T> implements Iterable<T>, MyList<T> {
 
     @Override
     public T getFirst() {
-        if (size == 0) throw new IllegalStateException("List is empty");
+        if (size == 0) {
+            throw new IllegalStateException("List is empty");
+        }
+
         return firstElem.obj;
     }
 
     @Override
     public T getLast() throws IllegalStateException{
-        if (size == 0) throw new IllegalStateException("List is empty");
+        if (size == 0) {
+            throw new IllegalStateException("List is empty");
+        }
         return lastElem.obj;
     }
 
@@ -113,7 +106,7 @@ public class MyLinkedList<T> implements Iterable<T>, MyList<T> {
     public String toString() {
         StringJoiner res = new StringJoiner("\n");
         for (T t : this) {
-            res.add("{ " + String.valueOf(t) + " },");
+            res.add("{ " + t + " },");
         }
         return res.toString();
     }
@@ -127,6 +120,14 @@ public class MyLinkedList<T> implements Iterable<T>, MyList<T> {
             this.prevNode = prevNode;
             this.obj = obj;
             this.nextNode = nextNode;
+
+            if (prevNode != null) {
+                prevNode.nextNode = this;
+            }
+
+            if (nextNode != null) {
+                nextNode.prevNode = this;
+            }
         }
     }
 }

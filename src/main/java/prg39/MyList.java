@@ -4,7 +4,7 @@ package prg39;
  * Моя реализация упрощенного аналога List из JDK
  * @param <T> тип объектов для добавления в список
  */
-public interface MyList<T> {
+public interface MyList<T> extends Iterable<T> {
     /**
      * Добавить элемент в конец списка
      * @param element добавляемый элемент
