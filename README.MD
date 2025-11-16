@@ -221,6 +221,7 @@
 42. **Обобщённый метод `maxOf`.** По `Comparator`.
 * Требования: `<T>` с `Comparator<? super T>`; без стримов.
 * Теория: верхние/нижние ограничения (`extends/super`), wildcard-и.
+* ☑16.11.2025
 
 43. **PECS тренировка.** Копирование между списками.
 * Требования: `List<? super T>` из `List<? extends T>`; без `Collections.copy`.
