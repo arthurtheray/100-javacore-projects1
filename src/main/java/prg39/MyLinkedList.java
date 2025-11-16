@@ -55,6 +55,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
         if (index == size) {
             add(element);
+            return;
         }
 
         Node byIndex = firstElem;
@@ -62,7 +63,7 @@ public class MyLinkedList<T> implements MyList<T> {
             byIndex = byIndex.nextNode;
         }
 
-        byIndex = new Node(byIndex.prevNode, element, byIndex);
+        new Node(byIndex.prevNode, element, byIndex);
         size++;
     }
 

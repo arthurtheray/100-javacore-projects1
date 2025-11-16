@@ -14,6 +14,7 @@ public class Main {
         list.add("раму");
         list.add("Моя", 0);
         list.add("грязную", 3);
+        list.add("тщательно", list.size());
 
         System.out.println("итоговый лист:" + list);
 
