@@ -35,7 +35,7 @@ public class TaskProcessor {
     }
 
     public String readAll() {
-        return tasks.toString();
+        return tasks.toString().replace("},", "},\n");
     }
 
     public void delete(int id) {
@@ -72,16 +72,17 @@ public class TaskProcessor {
         Task foundTask = null;
         if (id <= tasks.size() / 2) {
             for (Task task : tasks) {
-                foundTask = task;
-                if (foundTask.getId() == id) {
+                if (task.getId() == id) {
+                    foundTask = task;
                     break;
                 }
             }
         } else {
-            ListIterator<Task> it = tasks.listIterator(tasks.size() - 1);
+            ListIterator<Task> it = tasks.listIterator(tasks.size());
             while (it.hasPrevious()) {
-                foundTask = it.previous();
-                if (foundTask.getId() == id) {
+                Task previous = it.previous();
+                if (previous.getId() == id) {
+                    foundTask = previous;
                     break;
                 }
             }

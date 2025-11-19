@@ -22,8 +22,14 @@ public class Main {
         System.out.println(taskProcessor.readAll());
 
         taskProcessor.update(5, "Купить молока", null, null);
-        taskProcessor.update(4, null, null, Status.PAUSED);
+        taskProcessor.update(1, "Починить диван", null, null);
         System.out.println();
         System.out.println(taskProcessor.readAll());
+
+        taskProcessor.delete(1);
+        System.out.println();
+        System.out.println(taskProcessor.readAll());
+
+        taskProcessor.read(1);
     }
 }
