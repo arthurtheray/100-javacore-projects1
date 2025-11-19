@@ -31,7 +31,11 @@ public class TaskProcessor {
     }
 
     public String read(int id) {
-        return findTask(id).toString();
+        Task found = findTask(id);
+        if (found == null) {
+            throw new NullPointerException("ID not found");
+        }
+        return found.toString();
     }
 
     public String readAll() {
@@ -61,7 +65,7 @@ public class TaskProcessor {
         if (t == null) {
             throw new IllegalStateException("Task not found");
         }
-        TaskBuilder taskBuilder = new TaskBuilder(t);
+        TaskUpdater taskBuilder = new TaskUpdater(t);
         taskBuilder
                 .status(newStatus)
                 .deadLine(newDeadline)

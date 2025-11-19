@@ -4,28 +4,28 @@ import prg44.Status;
 
 import java.time.LocalDate;
 
-class TaskBuilder {
+class TaskUpdater {
     private final Task task;
 
-    public TaskBuilder(Task task) {
+    public TaskUpdater(Task task) {
         this.task = task;
     }
 
-    TaskBuilder description(String newDescription) {
+    TaskUpdater description(String newDescription) {
         if (newDescription != null) {
             this.task.setDescription(newDescription);
         }
         return this;
     }
 
-    TaskBuilder deadLine(LocalDate newDeadline) {
+    TaskUpdater deadLine(LocalDate newDeadline) {
         if (newDeadline != null) {
             this.task.setDeadLine(newDeadline);
         }
         return this;
     }
 
-    TaskBuilder status(Status newStatus) {
+    TaskUpdater status(Status newStatus) {
         if (newStatus != null) {
             task.setStatus(newStatus);
         }
