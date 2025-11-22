@@ -39,7 +39,7 @@ public class TaskProcessor {
     }
 
     public String readAll() {
-        return tasks.toString().replace("},", "},\n");
+        return tasks.toString().replace("},", "},\n"); //todo:реализовать нормальное форматирование
     }
 
     public void delete(int id) {
