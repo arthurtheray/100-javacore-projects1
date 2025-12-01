@@ -11,6 +11,10 @@ public class TextProcessor {
         this.words = new HashMap<>();
     }
 
+    public Map<String, Integer> getWords() {
+        return words;
+    }
+
     public int add(String text) {
         String[] splited = text.split("\\s+");
         for (String word : splited) {

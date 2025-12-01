@@ -241,6 +241,7 @@
 46. **Map: счётчик слов.**
 * Требования: `getOrDefault` или `merge`; без стримов.
 * Теория: `Map` API, `putIfAbsent/merge`, неизменяемые ключи.
+* ☑23.11.2025
 
 47. **Сортировка с `Comparator`.**
 * Требования: `thenComparing`; без `Comparable`.
