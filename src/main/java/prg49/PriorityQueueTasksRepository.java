@@ -2,6 +2,7 @@ package prg49;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Optional;
 import java.util.PriorityQueue;
 
 public class PriorityQueueTasksRepository implements TaskRepository {
@@ -9,7 +10,7 @@ public class PriorityQueueTasksRepository implements TaskRepository {
     private final PriorityQueue<Task> priorityQueue = new PriorityQueue<>(
             Comparator
                     .comparing(Task::getPriority)
-                    .thenComparing(Task::getSeq)
+                    .thenComparing(Task::getSeq, Comparator.reverseOrder())
     );
 
     public void add(String task, int priority) {
@@ -21,7 +22,7 @@ public class PriorityQueueTasksRepository implements TaskRepository {
      * добавленной задачи. Если задач нет, возвращается null
      */
     public String poll() {
-        return priorityQueue.poll().getCaption();
+        return Optional.ofNullable(priorityQueue.poll()).map(Task::getCaption).orElse(null);
     }
 
     @Override

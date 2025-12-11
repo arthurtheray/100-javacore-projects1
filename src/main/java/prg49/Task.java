@@ -23,6 +23,7 @@ public class Task {
 
         this.caption = caption;
         this.priority = priority;
+        this.seq = seq;
     }
 
     public String getCaption() {

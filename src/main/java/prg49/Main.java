@@ -1,7 +1,5 @@
 package prg49;
 
-import java.util.PriorityQueue;
-
 /**
  * 49. Очередь задач по приоритету (PriorityQueue)
  * Суть: реализовать диспетчер задач: на вход операции add(task, priority) и последовательность poll();
@@ -16,6 +14,5 @@ public class Main {
         TaskConsoleService taskConsoleService = new TaskConsoleService(tasksRepository);
         taskConsoleService.init();
     }
-
     //todo: решить проблему с выводом лишних строк и сортировкой (последнее добавленное должно быть более приоритетное)
 }

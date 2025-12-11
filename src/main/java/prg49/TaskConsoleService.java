@@ -1,6 +1,5 @@
 package prg49;
 
-import java.io.Console;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,6 +39,7 @@ public class TaskConsoleService {
         if (command.charAt(0) == '+') {
             try {
                 taskRepository.add(command.substring(2), Integer.parseInt(command.substring(1, 2)));
+                return "задача добавлена";
             } catch (Exception e) {
                 return "Ошибка при добавлении команды.\n" + e.getMessage();
             }
