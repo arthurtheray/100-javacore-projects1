@@ -21,8 +21,8 @@ public class PriorityQueueTasksRepository implements TaskRepository {
      * @return текст наиболее приоритетной задачи из списка. При равных приоритетах возвращается текст последней
      * добавленной задачи. Если задач нет, возвращается null
      */
-    public String poll() {
-        return Optional.ofNullable(priorityQueue.poll()).map(Task::getCaption).orElse(null);
+    public String peek() {
+        return Optional.ofNullable(priorityQueue.peek()).map(Task::getCaption).orElse(null);
     }
 
     @Override
