@@ -280,6 +280,7 @@
 Суть: на вход строка вида YYYY-MM-DD;number; на выход — суммарная «оценка» (например, день года + число).
 Ограничения: использовать catch (NumberFormatException | DateTimeParseException); не ловить общий Exception.
 Теория: многоцелевой catch, порядок catch, специфичные vs общие исключения, java.time.
+☑16.12.2025
 
 53. Копирование файла (try-with-resources)
 
