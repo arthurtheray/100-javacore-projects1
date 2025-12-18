@@ -287,6 +287,7 @@
 Суть: на вход путь источника и назначения; на выход — скопированный файл и время копирования.
 Ограничения: Files.newInputStream/newOutputStream + try-with-resources; не использовать FileInputStream/FileOutputStream напрямую и сторонние IO-библиотеки.
 Теория: AutoCloseable, NIO Files, управление ресурсами.
+☑17.12.2025
 
 54. Подсчёт строк/слов/символов в файле
 
