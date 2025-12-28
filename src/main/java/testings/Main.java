@@ -1,10 +1,11 @@
 package testings;
 
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        var var = "var";
+        System.out.println(var);
 //        String str = "1+2+3";
 //        System.out.println(Arrays.toString(str.split("\\+")));
 //        Timer timer = new Timer();
@@ -15,7 +16,7 @@ public class Main {
 //                if (count == 3)  {
 //                    cancel();
 //                    return;
-//                }
+//                } "sds""ds"",""",
 //                System.out.println("timer runs");
 //                System.out.println(scheduledExecutionTime());
 //                count++;
