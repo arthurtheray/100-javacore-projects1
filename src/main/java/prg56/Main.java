@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 public class Main {
     public static void main(String[] args) {
         try {
-            System.out.println(CsvReader.read(Files.newInputStream(Paths.get("persons.csv"))));
+            System.out.println(CsvReader.parsePersons(Files.newInputStream(Paths.get("persons.csv"))));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

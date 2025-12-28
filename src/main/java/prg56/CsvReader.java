@@ -13,9 +13,10 @@ public class CsvReader {
     private static final char QUOTES = '"';
     private static final int TOKENS_SIZE = 4;
 
-    public static List<Person> read(InputStream inputStream) throws IOException {
+    public static List<Person> parsePersons(InputStream inputStream) throws IOException {
         List<Person> fieldsOfPersons = new ArrayList<>();
         boolean quoted = false;
+        int wrongLinesCount = 0;
         try (inputStream;
              BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
             String line;
@@ -26,16 +27,19 @@ public class CsvReader {
                     char thisChar = line.charAt(i);
                     switch (thisChar) {
                         case QUOTES -> {
-                            if (sb.isEmpty()) {
-                                quoted = true;
-                            } else if (line.charAt(i + 1) == QUOTES) {
+                            if (i == line.length() - 1) {
+                                tokens.add(sb.toString());
+                                sb.setLength(0);
+                            } else if (quoted && line.charAt(i + 1) == QUOTES) {
                                 sb.append(thisChar);
                                 i++;
-                            } else if (line.charAt(i + 1) == DELIMITER) {
+                            } else if (quoted && line.charAt(i + 1) == DELIMITER) {
                                 tokens.add(sb.toString());
                                 sb.setLength(0);
                                 quoted = false;
                                 i++;
+                            } else {
+                                quoted = true;
                             }
                         }
                         case DELIMITER -> {
@@ -46,20 +50,35 @@ public class CsvReader {
                                 sb.append(thisChar);
                             }
                         }
-                        default -> sb.append(thisChar);
-                    }
-                    if (i == line.length() - 1) {
-                        tokens.add(sb.toString());
-                        break;
+                        default -> {
+                            sb.append(thisChar);
+                            if (i == line.length() - 1) {
+                                tokens.add(sb.toString());
+                                sb.setLength(0);
+                            }
+                        }
                     }
                 }
                 if (tokens.size() > TOKENS_SIZE) {
                     throw new IOException("Ошибка при парсинге строки " + line +
                             "\n Неверное число полей");
                 }
-                fieldsOfPersons.add(
-                        new Person(tokens.get(0), tokens.get(1), tokens.get(2), LocalDate.parse(tokens.get(3))));
+                try {
+                    fieldsOfPersons.add(
+                            new Person(tokens.get(0), tokens.get(1), tokens.get(2), LocalDate.parse(tokens.get(3))));
+                } catch (Exception e) {
+                    System.out.println("Ошибка: Некорректный формат строки " + line + "\n");
+                    wrongLinesCount++;
+                }
             }
+            System.out.printf(
+                    """
+                            Парсинг завершен.
+                            Успешно спаршено %d объектов.
+                           Не удалось спарсить: %d строк
+                           
+                           """, fieldsOfPersons.size(), wrongLinesCount
+                    );
         }
         return fieldsOfPersons;
     }
